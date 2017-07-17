@@ -6,8 +6,12 @@ var Viking = function(name, currHealth, strength) {
 
 };
 
-var vik1 = new Viking('Odin', 100, 15);
-var vik2 = new Viking('Thor', 120, 8);
+var vikingGruop = [];
+
+var vik1 = new Viking('Odin', 100, 20);
+vikingGruop.push(vik1);
+var vik2 = new Viking('Thor', 120, 15);
+vikingGruop.push(vik2);
 
 //Llama dos vikingo a la lucha
  function pitFight (viking1, viking2) {
@@ -65,4 +69,54 @@ var vik2 = new Viking('Thor', 120, 8);
  		console.log(viking1.name + " ha ganado");
  	}
  }
+
+ //Sajones
+
+ var Saxon = function(health, strength){
+ 	this.health = health;
+ 	this.strength = strength;
+ };
+
+ var saxonGroup = [];
+
+ var saxon1 = new Saxon(30, 3);
+ saxonGroup.push(saxon1);
+ var saxon2 = new Saxon(25, 5);
+ saxonGroup.push(saxon2);
+
+ //Selección vikingo
+function fightVikingAndSaxon(vikingGroup, saxonGroup){
+
+	var ramdomChoice; 
+	var index = 0;
+	var saxonDead = 0;
+	var vikingDead = 0;
+
+	vikingGroup.forEach(function(viking){
+
+		ramdomChoice = Math.floor(Math.random() * (saxonGroup.length - 0)) + 0;
+
+		saxonGroup[ramdomChoice].health = saxonGroup[ramdomChoice].health - viking.strength;
+		if (saxonGroup[ramdomChoice].health <= 0) {
+			saxonGroup.splice(ramdomChoice, 1);
+			saxonDead ++;
+		} else {
+
+			viking.currHealth = viking.currHealth - saxonGroup[ramdomChoice].strength;
+			
+			if(viking.currHealth <= 0) {
+			vikingGroup.splice(index, 1);
+			vikingDead ++;
+			}
+		};
+
+
+		index++;
+	
+
+	})
+}
+ 
+
+ 
 
